@@ -16,8 +16,7 @@ const palavras = lerPalavras()
 
 function sortearPalavra() {
     const indice = Math.floor(Math.random() * palavras.length)
-    const palavra = palavras[indice]
-    return palavra.toLowerCase()
+    return palavras[indice]
 }
 
 const jogo = new Forca(sortearPalavra())

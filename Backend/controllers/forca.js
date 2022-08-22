@@ -1,6 +1,22 @@
 class Forca {
+    // Resolver problema dos acentos:
+    // https://stackoverflow.com/questions/5700636/using-javascript-to-perform-text-matches-with-without-accented-characters
     constructor(resposta){
+        console.log(resposta)
         this.resposta = resposta;
+        this.respostaNormalizada = resposta.normalize('NFD') // Separar caracteres de acentos
+                                            .replace(/\p{Diacritic}/gu, "") // Substituir acentos por texto vazio
+                                            .toLowerCase();   // A maioria das palavras começa com letra maiúscula
+        this.vidas = 6;
+        this.palavra = resposta.replace(/./g, "_").split('');
+        this.letrasChutadas = [];
+        this.erro = ""
+    }
+
+    reiniciar(resposta) {
+        console.log(resposta)
+        this.resposta = resposta;
+        this.respostaNormalizada = resposta.normalize('NFD').replace(/\p{Diacritic}/gu, "").toLowerCase();
         this.vidas = 6;
         this.palavra = resposta.replace(/./g, "_").split('');
         this.letrasChutadas = [];
@@ -10,8 +26,8 @@ class Forca {
     chutar(letra) {
         if (this.validaChute(letra)) {
             let letraLower = letra.toLowerCase();
-      
-            if (this.resposta.includes(letraLower)) {
+            
+            if (this.respostaNormalizada.includes(letraLower)) {
                 this.escreveChute(letraLower)
             }
             else{
@@ -23,7 +39,7 @@ class Forca {
   
     buscarEstado() {
         if (this.vidas > 0){
-            if (this.palavra.join('') == this.resposta){
+            if (this.palavra.join('') == this.resposta) {
                 return { mensagem : "Parabéns! Você não foi pra forca."};
             }
           
@@ -59,19 +75,11 @@ class Forca {
     }
   
     escreveChute(letra) {
-        for (var i = 0; i < this.resposta.length; i++) {
-            if (this.resposta[i] == letra){
-                this.palavra[i] = letra
+        for (var i = 0; i < this.respostaNormalizada.length; i++) {
+            if (this.respostaNormalizada[i] == letra){
+                this.palavra[i] = this.resposta[i]
             }
         }
-    }
-
-    reiniciar(resposta) {
-        this.resposta = resposta;
-        this.vidas = 6;
-        this.palavra = resposta.replace(/./g, "_").split('');
-        this.letrasChutadas = [];
-        this.erro = ""
     }
 }
 
