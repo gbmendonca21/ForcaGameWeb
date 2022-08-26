@@ -23,7 +23,6 @@ const jogo = new Forca(sortearPalavra())
 
 module.exports = {
     async index(request, response) {
-
         return response.json(jogo.buscarDadosDoJogo());
     },
 

@@ -2,7 +2,6 @@ class Forca {
     // Resolver problema dos acentos:
     // https://stackoverflow.com/questions/5700636/using-javascript-to-perform-text-matches-with-without-accented-characters
     constructor(resposta){
-        console.log(resposta)
         this.resposta = resposta;
         this.respostaNormalizada = resposta.normalize('NFD') // Separar caracteres de acentos
                                             .replace(/\p{Diacritic}/gu, "") // Substituir acentos por texto vazio
@@ -14,7 +13,6 @@ class Forca {
     }
 
     reiniciar(resposta) {
-        console.log(resposta)
         this.resposta = resposta;
         this.respostaNormalizada = resposta.normalize('NFD').replace(/\p{Diacritic}/gu, "").toLowerCase();
         this.vidas = 6;
