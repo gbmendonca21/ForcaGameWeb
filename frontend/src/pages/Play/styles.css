@@ -1,0 +1,20 @@
+.play-container {
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 32px auto;
+}
+
+.play-container header {
+    display: flex;
+    align-items: center;
+}
+
+.play-container header span {
+    font-size: 20px;
+    margin-left: 24px;
+}
+
+.play-container header img {
+    height: 64px;
+}
