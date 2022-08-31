@@ -30,14 +30,12 @@ module.exports = {
         const { letra } = request.body 
         jogo.chutar(letra)
 
-        const estado = jogo.buscarEstado()
-
-        return response.json(estado)
+        return response.json(jogo.buscarDadosDoJogo());
     },
 
-    async create(request, response) {
+    async reset(request, response) {
         jogo.reiniciar(sortearPalavra())
 
-        return response.json(jogo.buscarDadosDoJogo())
+        return response.json(jogo.buscarDadosDoJogo());
     }
 };

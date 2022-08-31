@@ -8,24 +8,24 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function Play() {
-    const [jogo, setJogo] = useState({});
+    const [forca, setForca] = useState({});
     const [letra, setLetra] = useState('');
     
     //const history = useHistory();
 
     useEffect(() => {
         api.get('play', {}).then(response => {
-            setJogo(response.data); 
+            setForca(response.data); 
         })
     });
 
-    async function handleChutar(e) {
+    async function processarChutar(e) {
         e.preventDefault();
 
         const data = {letra};
 
         try {
-            await api.put('play', data, {});
+            await api.post('play', data, {});
             setLetra('')
 
             //history.push('/play');
@@ -35,11 +35,11 @@ export default function Play() {
         }
     }
 
-    async function handleReiniciar(e) {
+    async function processarReiniciar(e) {
         e.preventDefault();
 
         try {
-            await api.post('play', {}, {});
+            await api.get('reset', {}, {});
 
             //history.push('/play');
         }
@@ -58,26 +58,27 @@ export default function Play() {
                 </section>
 
                 <strong>Vidas:</strong>
-                <p>{jogo.vidas}</p>
+                <p>{forca.vidas}</p>
                 
                 <strong>Letras chutadas:</strong>
-                <p>{jogo.letrasChutadas}</p>
+                <p>{forca.letrasChutadas}</p>
                 
-                <p>{jogo.palavra}</p>
+                <p>{forca.palavra}</p>
                 
-                <strong>Erro:</strong>
-                <p>{jogo.erro}</p>
+                <strong>Mensagem:</strong>
+                <p>{forca.mensagem}</p>
 
-                <form onSubmit={handleChutar} method="get">
+                <form onSubmit={processarChutar} method="post">
                     <input
                         placeholder="Insira uma letra"
                         value={letra}
-                        onChange={e => setLetra(e.target.value)} />
+                        onChange={e => setLetra(e.target.value)}
+                        disabled={forca.jogoAcabou} />
 
-                    <button className="button" type="submit" disabled={jogo.vidas <= 0}>Chutar</button>
+                    <button className="button" type="submit" disabled={forca.jogoAcabou}>Chutar</button>
                 </form>
 
-                <form onSubmit={handleReiniciar} method="post">
+                <form onSubmit={processarReiniciar} method="get">
                     <button className="button" type="submit">Reiniciar</button>
                 </form>
             </div>

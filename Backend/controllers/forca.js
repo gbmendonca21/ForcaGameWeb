@@ -9,7 +9,9 @@ class Forca {
         this.vidas = 6;
         this.palavra = resposta.replace(/./g, "_").split('');
         this.letrasChutadas = [];
-        this.erro = ""
+        this.mensagem = "";
+        this.jogoAcabou = false;
+       
     }
 
     reiniciar(resposta) {
@@ -18,7 +20,9 @@ class Forca {
         this.vidas = 6;
         this.palavra = resposta.replace(/./g, "_").split('');
         this.letrasChutadas = [];
-        this.erro = ""
+        this.mensagem = "";
+        this.jogoAcabou = false;
+
     }
   
     chutar(letra) {
@@ -27,24 +31,31 @@ class Forca {
             
             if (this.respostaNormalizada.includes(letraLower)) {
                 this.escreveChute(letraLower)
+                this.mensagem = ""
             }
             else{
                 this.vidas--;
-                this.erro = "A letra não existe na palavra"
+                this.mensagem = "A letra não existe na palavra"
             }
-        }
-    }
-  
-    buscarEstado() {
-        if (this.vidas > 0){
-            if (this.palavra.join('') == this.resposta) {
-                return { mensagem : "Parabéns! Você não foi pra forca."};
-            }
-          
-          return this.buscarDadosDoJogo();
         }
 
-      return { mensagem : "Você morreu :( A palavra era '" + this.resposta + "'"}
+        this.validarEstado()
+    }
+  
+    validarEstado() {
+        if (this.vidas > 0) {
+            if (this.palavra.join('') == this.resposta) {
+                this.mensagem = "Parabéns! Você não foi pra forca.";
+                this.jogoAcabou = true;
+            }
+
+            // Aqui o jogo não acabou
+            // Não setar a variável nesse ponto
+        }
+        else {
+            this.mensagem = "Você morreu :( A palavra era '" + this.resposta + "'";
+            this.jogoAcabou = true;
+        }
     }
   
     buscarDadosDoJogo() {
@@ -52,23 +63,30 @@ class Forca {
             letrasChutadas: this.letrasChutadas, // Deve conter todas as letras chutadas
             vidas: this.vidas, // Quantidade de vidas restantes
             palavra: this.palavra, // Deve ser um array com as letras que já foram acertadas ou o valor "_" para as letras não identificadas
-            erro : this.erro
+            mensagem: this.mensagem,
+            jogoAcabou: this.jogoAcabou
         }
     }
   
     validaChute(letra) {
         if (letra.length != 1) {
-            this.erro = "Não é uma letra"
+            this.mensagem = "Não é uma letra"
             return false
         }
-      
+
         let letraLower = letra.toLowerCase();
         if (this.letrasChutadas.includes(letraLower)){
-            this.erro = "Letra já chutada"
+            this.mensagem = "Letra já chutada"
             return false
         }
         
         this.letrasChutadas.push(letraLower);
+
+        if (this.vidas == 0){
+            this.mensagem = "Você morreu :( A palavra era '" + this.resposta + "'"
+            return false
+        }
+
         return true
     }
   

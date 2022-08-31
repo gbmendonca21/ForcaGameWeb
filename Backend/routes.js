@@ -3,8 +3,9 @@ const routes = express.Router();
 const GameController = require('./controllers/GameController');
 
 routes.get("/play", GameController.index);
-routes.put("/play", GameController.update);
-routes.post("/play", GameController.create);
+routes.post("/play", GameController.update);
+
+routes.get("/reset", GameController.reset);
 
 // routes.post(caminho, método);
 
