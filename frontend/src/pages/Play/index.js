@@ -5,7 +5,6 @@ import { FiPower, FiTrash2 } from 'react-icons/fi';
 import api from '../../services/api';
 
 import './styles.css';
-import logoImg from '../../assets/logo.svg';
 
 export default function Play() {
     const [forca, setForca] = useState({});
@@ -15,7 +14,8 @@ export default function Play() {
 
     useEffect(() => {
         api.get('play', {}).then(response => {
-            setForca(response.data); 
+            setForca(response.data);
+            atualizaVidas()
         })
     });
 
@@ -48,26 +48,50 @@ export default function Play() {
         }
     }
 
+    function atualizaVidas() {
+        const idParte = forca.vidas;
+        var parteDaPessoa = document.getElementById(idParte);
+        parteDaPessoa.style.display = "block";
+    }
+
     return (
         <div className="play-container">
             <div className="content">
                 <section>
-                    <img src={logoImg} alt="Jogo da Forca" />
                     <h1>Jogo da Forca!</h1>
                     <p>Chute uma letra por vez e tente acertar a palavra antes de perder todas as vidas</p>
                 </section>
-
-                <strong>Vidas:</strong>
-                <p>{forca.vidas}</p>
                 
-                <strong>Letras chutadas:</strong>
-                <p>{forca.letrasChutadas}</p>
+                <div className="div1">
+                    <div className="div3">
+                        <div className="base"></div>
+                        <div className="pole"></div>
+                        <div className="pole-extension"></div>
+                        <div className="hanger"></div>
+                        <div id="5" className="person-head"></div>
+                        <div id="4" className="person-body"></div>
+                        <div id="3" className="right-arm"></div>
+                        <div id="2" className="left-arm"></div>
+                        <div id="1" className="right-leg"></div>
+                        <div id="0" className="left-leg"></div>
+                    </div>
+                    <div className="div4">
+                        <div className="div5">
+                            <label className="description">Letras chutadas:</label>
+                            <br />
+                            {forca.letrasChutadas.map(letraChutada => (
+                                <label className="guess">{letraChutada}</label>
+                            ))}
+                        </div>
+                        <div className="div6">
+                            {forca.palavra.map(letraDaPalavra => (
+                                <label>{letraDaPalavra}</label>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div className="div2">{forca.mensagem}</div>
                 
-                <p>{forca.palavra}</p>
-                
-                <strong>Mensagem:</strong>
-                <p>{forca.mensagem}</p>
-
                 <form onSubmit={processarChutar} method="post">
                     <input
                         placeholder="Insira uma letra"
