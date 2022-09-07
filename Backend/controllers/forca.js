@@ -11,7 +11,7 @@ class Forca {
         this.letrasChutadas = [];
         this.mensagem = "";
         this.jogoAcabou = false;
-       
+        this.letrasErradas = [];
     }
 
     reiniciar(resposta) {
@@ -22,7 +22,7 @@ class Forca {
         this.letrasChutadas = [];
         this.mensagem = "";
         this.jogoAcabou = false;
-
+        this.letrasErradas = [];
     }
   
     chutar(letra) {
@@ -36,6 +36,7 @@ class Forca {
             else{
                 this.vidas--;
                 this.mensagem = "A letra não existe na palavra"
+                this.letrasErradas.push(letraLower)
             }
         }
 
@@ -60,7 +61,7 @@ class Forca {
   
     buscarDadosDoJogo() {
         return {
-            letrasChutadas: this.letrasChutadas, // Deve conter todas as letras chutadas
+            letrasErradas: this.letrasErradas, // Deve conter todas as letras chutadas erradas 
             vidas: this.vidas, // Quantidade de vidas restantes
             palavra: this.palavra, // Deve ser um array com as letras que já foram acertadas ou o valor "_" para as letras não identificadas
             mensagem: this.mensagem,

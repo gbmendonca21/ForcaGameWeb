@@ -15,7 +15,7 @@ export default function Play() {
     useEffect(() => {
         api.get('play', {}).then(response => {
             setForca(response.data);
-            atualizaVidas()
+            atualizaVidas(forca.vidas);
         })
     });
 
@@ -48,10 +48,19 @@ export default function Play() {
         }
     }
 
-    function atualizaVidas() {
-        const idParte = forca.vidas;
-        var parteDaPessoa = document.getElementById(idParte);
-        parteDaPessoa.style.display = "block";
+    function atualizaVidas(vidas) {
+        if (vidas < 6)
+        {
+            var parteDaPessoa = document.getElementById(vidas);
+            parteDaPessoa.style.display = "block";
+        }
+        else
+        {
+            for (var i = vidas - 1; i >= 0; i--) {
+                var parte = document.getElementById(i);
+                parte.style.display = "none";
+            }
+        }
     }
 
     return (
@@ -62,8 +71,8 @@ export default function Play() {
                     <p>Chute uma letra por vez e tente acertar a palavra antes de perder todas as vidas</p>
                 </section>
                 
-                <div className="div1">
-                    <div className="div3">
+                <div className="main-ui">
+                    <div className="hanger-area">
                         <div className="base"></div>
                         <div className="pole"></div>
                         <div className="pole-extension"></div>
@@ -75,51 +84,41 @@ export default function Play() {
                         <div id="1" className="right-leg"></div>
                         <div id="0" className="left-leg"></div>
                     </div>
-                    <div className="div4">
-                        <div className="div5">
-                            <label className="description">Letras chutadas:</label>
+                    <div className="guesses-area">
+                        <div className="used-area">
+                            <label className="description">Letras Erradas:</label>
                             <br />
-                            {forca.letrasChutadas.map(letraChutada => (
-                                <label className="guess">{letraChutada}</label>
+                            {forca.letrasErradas?.map(letraErrada => (    
+                                <label className="guess">{letraErrada}</label>
                             ))}
                         </div>
-                        <div className="div6">
-                            {forca.palavra.map(letraDaPalavra => (
+                        <div className="word-area">
+                            {forca.palavra?.map(letraDaPalavra => (
                                 <label>{letraDaPalavra}</label>
                             ))}
                         </div>
                     </div>
                 </div>
-                <div className="div2">{forca.mensagem}</div>
+                <div className="message-area">{forca.mensagem}</div>
                 
-                <form onSubmit={processarChutar} method="post">
-                    <input
-                        placeholder="Insira uma letra"
-                        value={letra}
-                        onChange={e => setLetra(e.target.value)}
-                        disabled={forca.jogoAcabou} />
+                <div className="commands">
+                    <form onSubmit={processarChutar} method="post">
+                        <input
+                            placeholder="Insira uma letra"
+                            value={letra}
+                            onChange={e => setLetra(e.target.value)}
+                            disabled={forca.jogoAcabou} />
 
-                    <button className="button" type="submit" disabled={forca.jogoAcabou}>Chutar</button>
-                </form>
+                        <button type="submit" disabled={forca.jogoAcabou}>Chutar</button>
+                    </form>
 
-                <form onSubmit={processarReiniciar} method="get">
-                    <button className="button" type="submit">Reiniciar</button>
-                </form>
+                    <form onSubmit={processarReiniciar} method="get">
+                        <button type="submit">Reiniciar</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
 }
 
 
-// <ul>
-// {incidents.map(incident => (
-//     <li key={incident.id}>
-//         <strong>CASO:</strong>
-//         <p>{incident.title}</p>
-// 
-//         <strong>DESCRIÇÃO</strong>
-//         <p>{incident.description}</p>
-//     </li>
-// ))}
-// 
-// </ul>

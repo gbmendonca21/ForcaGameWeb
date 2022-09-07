@@ -1,178 +1,32 @@
+/* Definição de estilos de acordo com o tipo */
+h1, p{
+    font-size: 23px;
+	padding: 15px 0px 0px 0px;
+}
+
 label{
     font-size: 34px;
     margin: 5%;
 }
-.description{
-    font-size: 34px;
-}
-.guess{
-    font-size: 26px;
-}
-.div1 {
-   display: flex;
-   width: 800px;
-   height: 400px;
-   background: #99ff33;
-}
-.div2 {
-   font-size: 30px;
-   width: 800px;
-   height: 200px;
-   background: #ffcc66;
-}
-.div3 {
-   float: left;
-   width: 300px;
-   height: 400px;
-   background: #ff5050;
-}
-.div4 {
-   float: right;
-   width: 500px;
-   height: 400px;
-   background: #ff66ff;
-}
-.div5 {
-   width: 500px;
-   height: 300px;
-   background: #3366ff;
-}
-.div6 {
-   width: 500px;
-   height: 100px;
-   background: #009999;
-}
-.base {
-	-moz-transform: rotate(0deg);
-	-webkit-transform: rotate(0deg);
-	-o-transform: rotate(0deg);
-	-ms-transform: rotate(0deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 200px;
-	height: 0px;
-	top: 400px;
-	left: 50px;
-}
-.pole {
-	-moz-transform: rotate(90deg);
-	-webkit-transform: rotate(90deg);
-	-o-transform: rotate(90deg);
-	-ms-transform: rotate(90deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 300px;
-	height: 0px;
-	top: 250px;
-	left: -50px;
-}
-.pole-extension {
-	-moz-transform: rotate(0deg);
-	-webkit-transform: rotate(0deg);
-	-o-transform: rotate(0deg);
-	-ms-transform: rotate(0deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 130px;
-	height: 0px;
-	top: 100px;
-	left: 100px;
-}
-.hanger {
-	-moz-transform: rotate(90deg);
-	-webkit-transform: rotate(90deg);
-	-o-transform: rotate(90deg);
-	-ms-transform: rotate(90deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 50px;
-	height: 0px;
-	top: 126px;
-	left: 206px;
-}
-.person-head {
-	display: none;
-    top: 150px;
-    left: 206px;
-    width: 52px;
-    height: 52px;
-    position: absolute;
-    -webkit-border-radius: 26px;
-    -moz-border-radius: 26px;
-    border-radius: 26px;
-    background: black;
-}
-.person-body {
-    display: none;
-	-moz-transform: rotate(90deg);
-	-webkit-transform: rotate(90deg);
-	-o-transform: rotate(90deg);
-	-ms-transform: rotate(90deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 100px;
-	height: 0px;
-	top: 250px;
-	left: 180px;
-}
-.right-arm {
-    display: none;
-	-moz-transform: rotate(120deg);
-	-webkit-transform: rotate(120deg);
-	-o-transform: rotate(120deg);
-	-ms-transform: rotate(120deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 60px;
-	height: 0px;
-	top: 250px;
-	left: 183px;
-}
-.left-arm {
-    display: none;
-	-moz-transform: rotate(60deg);
-	-webkit-transform: rotate(60deg);
-	-o-transform: rotate(60deg);
-	-ms-transform: rotate(60deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 60px;
-	height: 0px;
-	top: 250px;
-	left: 217px;
-}
-.right-leg {
-    display: none;
-	-moz-transform: rotate(120deg);
-	-webkit-transform: rotate(120deg);
-	-o-transform: rotate(120deg);
-	-ms-transform: rotate(120deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 60px;
-	height: 0px;
-	top: 328px;
-	left: 183px;
-}
-.left-leg {
-    display: none;
-	-moz-transform: rotate(60deg);
-	-webkit-transform: rotate(60deg);
-	-o-transform: rotate(60deg);
-	-ms-transform: rotate(60deg);
-	position: absolute;
-	border: 2px solid black; 
-	width: 60px;
-	height: 0px;
-	top: 328px;
-	left: 217px;
+
+input{
+	padding: 5px 10px;
+	width: 150px;
 }
 
+button{
+	margin: 0px 0px 0px 20px;
+	padding: 5px 10px;
+}
+
+/* Definição de estilos como classe para ser usado no 'class' ou 'className' */
 .play-container {
     width: 100%;
     max-width: 1180px;
     padding: 0 30px;
     margin: 32px auto;
+	border-radius: 5px;
+	background: rgb(189, 189, 231);
 }
 
 .play-container content {
@@ -180,12 +34,203 @@ label{
     align-items: center;
 }
 
-.play-container content span {
-    font-size: 20px;
-    margin-left: 24px;
+.main-ui {
+	display: flex;
+	width: 800px;
+	height: 400px;
+	/*background: #99ff33;*/
 }
 
-.play-container content img {
-    height: 64px;
+.message-area {
+	color: rgb(197, 27, 27);
+	padding: 8% 0%;
+	text-align: center;
+   	font-size: 30px;
+   	width: 800px;
+   	height: 200px;
+   	/*background: #ffcc66;*/
+}
+
+.commands{
+	display: flex;
+	float: right;
+	width: 800px;
+	margin: 20px 0px;
+}
+
+.guesses-area {
+	float: right;
+	width: 500px;
+	height: 400px;
+	/*background: #ff66ff;*/
+}
+
+.guess{
+    font-size: 26px;
+}
+
+.description{
+    font-size: 34px;
+}
+
+.word-area {
+ 	padding: 5% 0%;
+ 	width: 500px;
+	height: 100px;
+	/*background: #009999;*/
+}
+
+.used-area {
+ color: rgb(70, 58, 182);
+ border-style: solid;
+ border-width: 2px;
+ border-radius: 5px;
+ border-color: black;
+ margin: 8% 0%;
+	width: 700px;
+	height: 300px;
+	/*background: #3366ff;*/
+}
+
+.hanger-area {
+	float: left;
+	width: 300px;
+	height: 400px;
+	/*background: #ff5050;*/
+}
+
+.base {
+	-moz-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 100px;
+	height: 0px;
+	top: 350px;
+	left: 50px;
+}
+
+.pole {
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 300px;
+	height: 0px;
+	top: 198px;
+	left: -50px;
+}
+
+.pole-extension {
+	-moz-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 130px;
+	height: 0px;
+	top: 45px;
+	left: 100px;
+}
+
+.hanger {
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 50px;
+	height: 0px;
+	top: 65px;
+	left: 204px;
+}
+
+.person-head {
+	display: none;
+    top: 86px;
+    left: 204px;
+    width: 52px;
+    height: 52px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    position: relative;
+    border-radius: 26px;
+    background: black;
+}
+
+.person-body {
+    display: none;
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 100px;
+	height: 0px;
+	top: 130px;
+	left: 180px;
+}
+
+.right-arm {
+    display: none;
+	-moz-transform: rotate(120deg);
+	-webkit-transform: rotate(120deg);
+	-o-transform: rotate(120deg);
+	-ms-transform: rotate(120deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 60px;
+	height: 0px;
+	top: 120px;
+	left: 185px;
+}
+
+.left-arm {
+    display: none;
+	-moz-transform: rotate(60deg);
+	-webkit-transform: rotate(60deg);
+	-o-transform: rotate(60deg);
+	-ms-transform: rotate(60deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 60px;
+	height: 0px;
+	top: 117px;
+	left: 215px;
+}
+
+.right-leg {
+    display: none;
+	-moz-transform: rotate(120deg);
+	-webkit-transform: rotate(120deg);
+	-o-transform: rotate(120deg);
+	-ms-transform: rotate(120deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 60px;
+	height: 0px;
+	top: 190px;
+	left: 185px;
+}
+
+.left-leg {
+    display: none;
+	-moz-transform: rotate(60deg);
+	-webkit-transform: rotate(60deg);
+	-o-transform: rotate(60deg);
+	-ms-transform: rotate(60deg);
+    position: relative;
+	border: 2px solid black; 
+	width: 60px;
+	height: 0px;
+	top: 187px;
+	left: 215px;
 }
 
